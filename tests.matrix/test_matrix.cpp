@@ -2,10 +2,10 @@
 
 //
 
-#include <gtest/gtest.h>
-#include "../../LIBS/lib_Matrix/matrix.h"
+#include <gtest/gtest.h> //РІСЃС‚Р°РІР»СЏРµС‚ РєРѕРґ РёР· СѓРєР°Р·Р°РЅРЅРѕРіРѕ С„Р°Р№Р»Р° РІ С‚РµРєСѓС‰РёР№ С„Р°Р№Р»
+#include "../../LIBS/lib_Matrix/matrix.h" 
 
-TEST(TDynamicMatrix, can_create_matrix_with_positive_length) {
+TEST(TDynamicMatrix, can_create_matrix_with_positive_length) { //РїРѕРґСЃС‚Р°РІР»СЏРµРј СЂР°Р·Р»РёС‡РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ Рё РїСЂРѕРІРµСЂСЏРµРј, РЅРµ РІС‹Р·РѕРІСѓС‚ Р»Рё РѕРЅРё РѕС€РёР±РєСѓ
   ASSERT_NO_THROW(TDynamicMatrix<int> m(5));
 }
 
@@ -13,7 +13,7 @@ TEST(TDynamicMatrix, cant_create_too_large_matrix) {
   ASSERT_ANY_THROW(TDynamicMatrix<int> m(MAX_MATRIX_SIZE + 1));
 }
 
-TEST(TDynamicMatrix, throws_when_create_matrix_with_negative_length) { // (Как задумывалось) был size_t неопределённое поведение!
+TEST(TDynamicMatrix, throws_when_create_matrix_with_negative_length) { 
   ASSERT_ANY_THROW(TDynamicMatrix<int> m(-5));
 }
 
@@ -39,17 +39,17 @@ TEST(TDynamicMatrix, copied_matrix_has_its_own_memory) {
 	EXPECT_EQ(m, n);
 }
 
-TEST(TDynamicMatrix, can_get_size) { // (Как задумывалось) есть тест только на возможность вызова но не на правльность
+TEST(TDynamicMatrix, can_get_size) { // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) ГҐГ±ГІГј ГІГҐГ±ГІ ГІГ®Г«ГјГЄГ® Г­Г  ГўГ®Г§Г¬Г®Г¦Г­Г®Г±ГІГј ГўГ»Г§Г®ГўГ  Г­Г® Г­ГҐ Г­Г  ГЇГ°Г ГўГ«ГјГ­Г®Г±ГІГј
 	ASSERT_NO_THROW(TDynamicMatrix<int> (5).size());
 }
 
-TEST(TDynamicMatrix, can_set_and_get_element) {  // (Как задумывалось) проверка только на возможность вызова но не на правильность
+TEST(TDynamicMatrix, can_set_and_get_element) {  // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) ГЇГ°Г®ГўГҐГ°ГЄГ  ГІГ®Г«ГјГЄГ® Г­Г  ГўГ®Г§Г¬Г®Г¦Г­Г®Г±ГІГј ГўГ»Г§Г®ГўГ  Г­Г® Г­ГҐ Г­Г  ГЇГ°Г ГўГЁГ«ГјГ­Г®Г±ГІГј
 	TDynamicMatrix<int> m(5);
 	ASSERT_NO_THROW(m[0][0]);
 	ASSERT_NO_THROW(m[0][1] = 1);
 }
 
-TEST(TDynamicMatrix, throws_when_set_element_with_negative_index) { // (Как задумывалось) нет проверки на гет 
+TEST(TDynamicMatrix, throws_when_set_element_with_negative_index) { // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) Г­ГҐГІ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЈГҐГІ 
 	ASSERT_ANY_THROW(TDynamicMatrix<int> (5).at(-1).at(1) = 1);
 }
 
@@ -63,11 +63,11 @@ TEST(TDynamicMatrix, can_assign_matrix_to_itself) {
 	EXPECT_EQ(m, m);
 }
 
-TEST(TDynamicMatrix, can_assign_matrices_of_equal_size) { // (Как задумывалось) нет проверки на корректность
+TEST(TDynamicMatrix, can_assign_matrices_of_equal_size) { // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) Г­ГҐГІ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГј
 	ASSERT_NO_THROW(TDynamicMatrix<int> (1) = TDynamicMatrix<int>(2));
 }
 
-TEST(TDynamicMatrix, assign_operator_change_matrix_size) { // (Как задумывалось) нет проверки на корректность
+TEST(TDynamicMatrix, assign_operator_change_matrix_size) { // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) Г­ГҐГІ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГј
 	TDynamicMatrix<int> m(5);
 	EXPECT_EQ(m.size(), 5);
 	m.resize(4);
@@ -100,7 +100,7 @@ TEST(TDynamicMatrix, matrices_with_different_size_are_not_equal) {
 	EXPECT_NE(m, n);
 }
 
-TEST(TDynamicMatrix, can_add_matrices_with_equal_size) { // (Как задумывалось) нет проверки на корректность
+TEST(TDynamicMatrix, can_add_matrices_with_equal_size) { // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) Г­ГҐГІ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГј
 	TDynamicMatrix<int> m(5);
 	m[0][0] = 1;
 	TDynamicMatrix<int> n(5);
@@ -115,7 +115,7 @@ TEST(TDynamicMatrix, cant_add_matrices_with_not_equal_size) {
 	ASSERT_ANY_THROW(m + n);
 }
 
-TEST(TDynamicMatrix, can_subtract_matrices_with_equal_size) { // (Как задумывалось) нет проверки на корректность
+TEST(TDynamicMatrix, can_subtract_matrices_with_equal_size) { // (ГЉГ ГЄ Г§Г Г¤ГіГ¬Г»ГўГ Г«Г®Г±Гј) Г­ГҐГІ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГј
 	TDynamicMatrix<int> m(5);
 	TDynamicMatrix<int> n(5);
 	ASSERT_NO_THROW(m + n);
